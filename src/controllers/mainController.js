@@ -13,8 +13,10 @@ const { API_KEY } = require("../../config");
 const activateUser = async (req, res, next) => {
 	try {
 		const params = req.params;
-		console.log(API_KEY);
-		if (params?.key !== API_KEY) { return res.response({ message: 'Unauthorized' }, 400); }
+
+		if (params?.key !== API_KEY) {
+			return res.response({ message: 'failure', display_message: "Invalid NB key" }, 200);
+		}
 
 		return res.response({
 			message: "size2",
@@ -50,7 +52,7 @@ const activateUser = async (req, res, next) => {
 const verifyUser = async (req, res, next) => {
 	try {
 		const params = req.params;
-		if (params?.key !== API_KEY) { return res.response({ message: 'Unauthorized' }, 400); }
+		if (params?.key !== API_KEY) { return res.response({ message: 'failure' }, 200); }
 
 		return res.response({
 			message: "size1",
@@ -84,7 +86,7 @@ const verifyUser = async (req, res, next) => {
 const addBlacklist = async (req, res, next) => {
 	try {
 		const request = req.body;
-		if (request?.key !== API_KEY) { return res.response({ message: 'Unauthorized' }, 400); }
+		if (request?.key !== API_KEY) { return res.response({ message: 'failure' }, 200); }
 
 		return res.response({
 			message: "success",
@@ -117,7 +119,7 @@ const addBlacklist = async (req, res, next) => {
  */
 const fetchBlacklist = async (req, res, next) => {
 	const params = req.params;
-	if (params?.key !== API_KEY) { return res.response({ message: 'Unauthorized' }, 400); }
+	if (params?.key !== API_KEY) { return res.response({ message: 'failure' }, 200); }
 	try {
 		return res.response({
 			message: "success",
@@ -138,7 +140,7 @@ const fetchBlacklist = async (req, res, next) => {
 const removeBlacklist = async (req, res, next) => {
 	try {
 		const request = req.body;
-		if (request?.key !== API_KEY) { return res.response({ message: 'Unauthorized' }, 400); }
+		if (request?.key !== API_KEY) { return res.response({ message: 'failure' }, 200); }
 
 		return res.response({
 			message: "success",
